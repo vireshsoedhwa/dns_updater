@@ -5,5 +5,10 @@ services:
     image: ip_fix
     build:
       context: .
-    # command: >
-    #   sh -c "ls"
+    environment:
+      - CURL_ENDPOINT_PRIMARY=
+      - CURL_ENDPOINT_SECONDARY=
+      - DIG_HOST=
+      - DNS_TOKEN=
+      - DOMAIN_NAME=
+      - DOMAIN_RECORD_ID=
