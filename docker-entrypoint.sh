@@ -1,8 +1,27 @@
 #!/bin/sh
 
 set -e
->&2 echo "Checking address"
 
+if [[ -z "${CURL_ENDPOINT_PRIMARY}" ]]; then
+  exit 1
+fi
+if [[ -z "${CURL_ENDPOINT_SECONDARY}" ]]; then
+  exit 1
+fi
+if [[ -z "${DIG_HOST}" ]]; then
+  exit 1
+fi
+if [[ -z "${DNS_TOKEN}" ]]; then
+  exit 1
+fi
+if [[ -z "${DOMAIN_NAME}" ]]; then
+  exit 1
+fi
+if [[ -z "${DOMAIN_RECORD_ID}" ]]; then
+  exit 1
+fi
+
+>&2 echo "Checking address"
 >&2 echo CURL_ENDPOINT_PRIMARY: $CURL_ENDPOINT_PRIMARY
 >&2 echo CURL_ENDPOINT_SECONDARY: $CURL_ENDPOINT_SECONDARY
 >&2 echo DIG_HOST: $DIG_HOST
@@ -54,6 +73,7 @@ then
         exit 0
     else
         fix_ip $curl_result_primary
+        echo "`date` [`hostname`] changed from $dig_result to $curl_result_primary" >> /log/entries.txt;
         exit 1
     fi
 else 
@@ -67,6 +87,7 @@ then
         exit 0
     else
         fix_ip $curl_result_secondary
+        echo "`date` [`hostname`] changed from $dig_result to $curl_result_secondary" >> /log/entries.txt;
         exit 1
     fi
 else 
