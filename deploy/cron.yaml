@@ -16,7 +16,7 @@ spec:
               claimName: dnsupdater-pvc
           containers:
           - name: dnsupdater
-            image: registry.container-registry:32000/dnsupdater:latest
+            image: 10.152.183.114:32000/dnsupdater:latest
             imagePullPolicy: IfNotPresent
             resources:
               requests:
