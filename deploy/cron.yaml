@@ -4,7 +4,7 @@ metadata:
   name: dnsupdater
   namespace: dnsupdater
 spec:
-  schedule: "*/15  * * * *"
+  schedule: "*/15 * * * *"
   jobTemplate:
     spec:
       template:
@@ -16,7 +16,7 @@ spec:
               claimName: dnsupdater-pvc
           containers:
           - name: dnsupdater
-            image: registry.wieru.com/dnsupdater
+            image: registry.container-registry:32000/dnsupdater:latest
             imagePullPolicy: IfNotPresent
             resources:
               requests:
