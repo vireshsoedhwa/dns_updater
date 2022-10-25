@@ -21,6 +21,7 @@ if [[ -z "${DOMAIN_RECORD_ID}" ]]; then
   exit 1
 fi
 
+echo "`date` [`hostname`] Checking address" >> /log/entries.txt;
 >&2 echo "Checking address"
 >&2 echo CURL_ENDPOINT_PRIMARY: $CURL_ENDPOINT_PRIMARY
 >&2 echo CURL_ENDPOINT_SECONDARY: $CURL_ENDPOINT_SECONDARY
