@@ -16,7 +16,7 @@ spec:
               claimName: dnsupdater-pvc
           containers:
           - name: dnsupdater
-            image: 192.168.1.100:32000/dnsupdater:latest
+            image: localhost:32000/dnsupdater:latest
             imagePullPolicy: IfNotPresent
             resources:
               requests:
