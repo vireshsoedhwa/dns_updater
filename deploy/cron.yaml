@@ -4,7 +4,7 @@ metadata:
   name: dnsupdater
   namespace: dnsupdater
 spec:
-  schedule: "*/15  * * * *"
+  schedule: "0 * * * *"
   jobTemplate:
     spec:
       template:
@@ -16,7 +16,7 @@ spec:
               claimName: dnsupdater-pvc
           containers:
           - name: dnsupdater
-            image: localhost:32000/dnsupdater:latest
+            image: localhost:32000/dnsupdater
             imagePullPolicy: IfNotPresent
             resources:
               requests:
