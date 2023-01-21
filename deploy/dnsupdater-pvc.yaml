@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dnsupdater-pvc
+  namespace: dnsupdater
+spec:
+  storageClassName: default-sc
+  accessModes: [ReadWriteOnce]
+  resources: { requests: { storage: 1Gi } }
