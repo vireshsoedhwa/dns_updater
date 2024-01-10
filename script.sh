@@ -54,12 +54,11 @@ function digitalocean_dns_update()
         "data": "'$1'"
         }')
     if [ "$http_code" == "200" ]; then
-        echo "$(date): DNS IP address updated successfully: $public_ip" | tee -a log.txt
+        echo "$(date): DNS IP address updated successfully: $public_ip"
         echo "$public_ip" > public_ip.txt
     else
 
-        echo "$(date): DNS IP address update failed: HTTP code: $http_code" | tee -a log.txt
-        tail -n 100 log.txt > temp.txt && mv temp.txt log.txt
+        echo "$(date): DNS IP address update failed: HTTP code: $http_code"
         exit 1
     fi
 }
@@ -67,16 +66,12 @@ function digitalocean_dns_update()
 # Check if the IP addresses match
 if [ "$dns_ip_address" == "$public_ip" ]; then
 
-    echo "$(date): DNS IP address ($dns_ip_address) matches public IP ($public_ip)" | tee -a log.txt
-    tail -n 100 log.txt > temp.txt && mv temp.txt log.txt
+    echo "$(date): DNS IP address ($dns_ip_address) matches public IP ($public_ip)"
     exit 0
 else
-    echo "$(date): DNS IP address ($dns_ip_address) does not match public IP ($public_ip)" | tee -a log.txt
+    echo "$(date): DNS IP address ($dns_ip_address) does not match public IP ($public_ip)"
     echo "Updating DNS IP address"
     digitalocean_dns_update $public_ip
 fi
-
-# Keep only the last 100 lines in the log file
-tail -n 100 log.txt > temp.txt && mv temp.txt log.txt
 
 exit 1
