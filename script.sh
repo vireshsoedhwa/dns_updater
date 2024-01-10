@@ -36,7 +36,7 @@ if [ -f dns_record.txt ]; then
 else
     echo "Getting dns record IP"
     dns_ip_address=$(dig +short $DOMAIN_NAME)
-    echo "$dns_ip_address" > dns_record.txt
+    echo "$dns_ip_address" > ./dns_record.txt
 fi
 
     echo "Getting public IP from service"
