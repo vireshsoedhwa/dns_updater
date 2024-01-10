@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Check if config file was provided
 if [ $# -eq 0 ]; then
